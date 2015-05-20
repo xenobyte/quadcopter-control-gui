@@ -5,8 +5,3 @@ A software prototype for a graphical user interface to control engines of a quad
 * QuadServer with is a tcp server running on the quadcopter. It's written in C++ and parses the messages from the gui and controls the engines.
 
 These components communicate over tcp/ip using json messages.
-
-
------------------     json        --------------
-| QuadcopterGui |   -------->     | QuadServer |
------------------     tcp         --------------
