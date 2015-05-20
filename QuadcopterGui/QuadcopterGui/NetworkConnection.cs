@@ -44,7 +44,6 @@ namespace QuadcopterGui
         }
         catch (Exception exception)
         {
-          MessageBox.Show("Unable to connect to server\n" + exception.StackTrace);
           return false;
         }
         _isConnected = true;
