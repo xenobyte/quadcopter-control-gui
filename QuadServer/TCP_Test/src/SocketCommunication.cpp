@@ -21,7 +21,7 @@
 #include "TCP_TestConnection.h"
 
 // don't send big packets
-#define PACKET_SIZE 64
+#define PACKET_SIZE 128
 
 SocketBase::SocketBase() :
     mSockfd(-1),
@@ -243,18 +243,19 @@ TReadStatus ClientSocket::read(std::uint8_t * const data, std::uint32_t len) con
 
     errno = 0;
 
+	memset(data,0,len);
     const size_t read_const = PACKET_SIZE;
 
     int bytesRead = 0;
     int bytesToRead = len;
     int err;
-    while (bytesToRead > 0) {
+    //while (bytesToRead > 0) {
         err = recv(mSockfd, &data[bytesRead],
                    (bytesToRead > read_const ? bytesToRead : read_const),
                    MSG_NOSIGNAL);
-        std::cout << "err: " << err << std::endl;
-        std::cout << data[bytesRead] << std::endl;
-        std::cout << "bytes to Read: " << bytesToRead << std::endl;
+        //std::cout << "err: " << err << std::endl;
+        //std::cout << data[bytesRead] << std::endl;
+        //std::cout << "bytes to Read: " << bytesToRead << std::endl;
 
         if (err == -1) {
             if ((errno & EAGAIN) || (errno & (EWOULDBLOCK))) {
@@ -271,6 +272,6 @@ TReadStatus ClientSocket::read(std::uint8_t * const data, std::uint32_t len) con
         }
         bytesRead += err;
         bytesToRead -= err;
-    }
+    //}
     return eSuccess;
 }

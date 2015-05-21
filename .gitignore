@@ -30,3 +30,6 @@
 QuadcopterGui/QuadcopterGui/obj/*
 QuadcopterGui/QuadcopterGui/bin/*
 *.cache
+
+#Visual Studio Stuff
+*.sdf
