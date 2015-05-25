@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
-#include "frozen.h"
+#include "JSONParser.h"
 
 #ifdef _WIN32
 #define snprintf _snprintf

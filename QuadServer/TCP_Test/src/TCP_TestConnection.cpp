@@ -12,10 +12,7 @@
 #include <time.h>
 #include <cstdlib>
 #include <string.h>
-#include "TCP_TestConnection.h"
-#include "SocketCommunication.h"
-#include "frozen.h"
-#include "JSON_Test.h"
+#include "ParameterUpdateThread.h"
 
 using namespace std;
 
@@ -30,36 +27,46 @@ void PrintBuffer(unsigned char* buf, uint32_t len){
 }
 
 int main(int argc, char* argv[]) {
-	cout << "listening ..." << endl;
-	SERVER.bind(1234);
-	SERVER.listen(1);
-	ClientSocket *sock = SERVER.accept();
-
-	uint32_t bufferSize = 200;
-	unsigned char readBuffer[bufferSize];
-	TReadStatus readSuccess = eFailed;
-
-	if (sock) {
-		cout << "found client" << endl;
-		sock->set_blocking(true);
-
-		while (true) {
-			readSuccess = sock->read(readBuffer, bufferSize);
-			if (readSuccess == eSuccess) {
-				PrintBuffer(readBuffer, bufferSize);
-				// parse json
-				JSON_Test(readBuffer,bufferSize);
-			}
-//			} else if (readSuccess == eFailed) {
-//				cout << "does not work" << readSuccess << endl;
-//			} else if (readSuccess == eWouldBlock) {
-//				cout << "would block" << readSuccess << endl;
+//	cout << "listening ..." << endl;
+//	SERVER.bind(1234);
+//	SERVER.listen(1);
+//	ClientSocket *sock = SERVER.accept();
+//
+//	uint32_t bufferSize = 200;
+//	unsigned char readBuffer[bufferSize];
+//	TReadStatus readSuccess = eFailed;
+//
+//	if (sock) {
+//		cout << "found client" << endl;
+//		sock->set_blocking(true);
+//
+//		while (true) {
+//			readSuccess = sock->read(readBuffer, bufferSize);
+//			if (readSuccess == eSuccess) {
+//				PrintBuffer(readBuffer, bufferSize);
+//				// parse json
+//				JSON_Test(readBuffer,bufferSize);
 //			}
-			usleep(1000000);
-		}
+////			} else if (readSuccess == eFailed) {
+////				cout << "does not work" << readSuccess << endl;
+////			} else if (readSuccess == eWouldBlock) {
+////				cout << "would block" << readSuccess << endl;
+////			}
+//			usleep(1000000);
+//		}
+//
+//		SERVER.close();
+//	}
 
-		SERVER.close();
-	}
+
+	int port = 1234;
+	ParameterUpdateThread param_thread(port);
+	param_thread.Start();
+
+
+
+
+
 
 }
 
