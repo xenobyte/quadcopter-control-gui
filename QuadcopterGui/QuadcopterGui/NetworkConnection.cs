@@ -16,6 +16,7 @@ namespace QuadcopterGui
     private TcpClient _client;
     private NetworkStream _stream;
     private bool _isConnected;
+    private StreamWriter _streamWriter;
 
     /// <summary>
     ///   Constructor to initialise this class
@@ -41,6 +42,7 @@ namespace QuadcopterGui
         {
           _client.Connect(_serverIpAddress, _port);
           _stream = _client.GetStream();
+          _streamWriter = new StreamWriter(_stream);
         }
         catch (Exception exception)
         {
@@ -57,6 +59,7 @@ namespace QuadcopterGui
     /// </summary>
     public void Disconnect()
     {
+      _streamWriter.Close();
       _client.Close();
       _stream = null;
       _isConnected = false;
@@ -70,9 +73,10 @@ namespace QuadcopterGui
     {
       if (_isConnected) // only send if we are connected
       {
-        var streamWriter = new StreamWriter(_stream);
-        streamWriter.Write(data);
-        streamWriter.Close();
+        if (_streamWriter != null)
+        {
+          _streamWriter.Write(data);
+        }
       }
     }
   }
