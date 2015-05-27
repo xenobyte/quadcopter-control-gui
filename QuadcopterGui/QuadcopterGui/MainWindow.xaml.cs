@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace QuadcopterGui
 {
@@ -21,7 +9,7 @@ namespace QuadcopterGui
   /// </summary>
   public partial class MainWindow : Window
   {
-    private NetworkConnection _networkConnection = null;
+    private NetworkConnection _networkConnection;
 
     public MainWindow()
     {
@@ -41,10 +29,22 @@ namespace QuadcopterGui
 
     private void SendButton_OnClick(object sender, RoutedEventArgs e)
     {
-      const string json = "{ \"Angle\" : { " +
-                          "\"P\": 23.23,  \"I\": 23.23, \"D\": 23.23, } " +
-                          "}";
-      _networkConnection.Send(json);
+      // get values from sliders
+      double angleP = Double.Parse(SliderAngleP.Value.ToString());
+      double angleI = Double.Parse(SliderAngleI.Value.ToString());
+      double angleD = Double.Parse(SliderAngleD.Value.ToString());
+
+      double angleFreqP = Double.Parse(SliderAngleFreqP.Value.ToString());
+      double angleFreqI = Double.Parse(SliderAngleFreqI.Value.ToString());
+      double angleFreqD = Double.Parse(SliderAngleFreqD.Value.ToString());
+
+      // build json string and round slider values to 2 of fractional digits
+      string json = "{ \"Angle\" : { " +
+                    "\"P\": " + Math.Round(angleP, 2) + ", \"I\": " + Math.Round(angleI, 2) + ", \"D\": " + Math.Round(angleD, 2) + ", } " +
+                    "\"AngleFreq\" : { " +
+                    "\"P\": " + Math.Round(angleFreqP, 2) + ", \"I\": " + Math.Round(angleFreqI, 2) + ", \"D\": " + Math.Round(angleFreqD, 2) + ", } " +
+                    "}";
+      _networkConnection.Send(json); // send to server
     }
   }
 }

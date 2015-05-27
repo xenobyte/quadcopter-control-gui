@@ -38,15 +38,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0" Grid.Column="0" Width="30" Name="AnglePMinValueBox">0</TextBox>
-            <Slider Grid.Row="0" Grid.Column="1" Width="400" Minimum="{Binding Path=AnglePMinValueBox}" Maximum="{Binding Path=AnglePMaxValueBox}" />
+            <Slider Name="SliderAngleP"  Grid.Row="0" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AnglePMinValueBox, Path=Text}" Maximum="{Binding ElementName=AnglePMaxValueBox, Path=Text}" />
             <TextBox Grid.Row="0" Grid.Column="2"  Width="30" Name="AnglePMaxValueBox">1000</TextBox>
             <Label Grid.Row="0" Grid.Column="3" Content="P"/>
             <TextBox Grid.Row="1" Grid.Column="0"  Width="30" Name="AngleIMinValueBox">0</TextBox>
-            <Slider Grid.Row="1" Grid.Column="1" Width="400"/>
+            <Slider Name="SliderAngleI" Grid.Row="1" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AngleIMinValueBox, Path=Text}" Maximum="{Binding ElementName=AngleIMaxValueBox, Path=Text}"/>
             <TextBox Grid.Row="1" Grid.Column="2" Width="30" Name="AngleIMaxValueBox">1000</TextBox>
             <Label Grid.Row="1" Grid.Column="3" Content="I"/>
             <TextBox Grid.Row="2" Grid.Column="0" Width="30" Name="AngleDMinValueBox">0</TextBox>
-            <Slider Grid.Row="2" Grid.Column="1" Width="400"/>
+            <Slider Name="SliderAngleD" Grid.Row="2" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AngleDMinValueBox, Path=Text}" Maximum="{Binding ElementName=AngleDMaxValueBox, Path=Text}"/>
             <TextBox Grid.Row="2" Grid.Column="2" Width="30" Name="AngleDMaxValueBox">1000</TextBox>
             <Label Grid.Row="2" Grid.Column="3" Content="D"/>
         </Grid>
@@ -63,17 +63,17 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="0"  Width="30">0</TextBox>
-            <Slider Grid.Row="0" Grid.Column="1" Width="400"/>
-            <TextBox Grid.Row="0" Grid.Column="2"  Width="30">1000</TextBox>
+            <TextBox Grid.Row="0" Grid.Column="0"  Width="30" Name="AngleFreqPMinValueBox">0</TextBox>
+            <Slider Name="SliderAngleFreqD" Grid.Row="0" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AngleFreqPMinValueBox, Path=Text}" Maximum="{Binding ElementName=AngleFreqPMaxValueBox, Path=Text}" />
+            <TextBox Grid.Row="0" Grid.Column="2"  Width="30" Name="AngleFreqPMaxValueBox">1000</TextBox>
             <Label Grid.Row="0" Grid.Column="3" Content="P"/>
-            <TextBox Grid.Row="1" Grid.Column="0"  Width="30">0</TextBox>
-            <Slider Grid.Row="1" Grid.Column="1" Width="400"/>
-            <TextBox Grid.Row="1" Grid.Column="2" Width="30">1000</TextBox>
+            <TextBox Grid.Row="1" Grid.Column="0"  Width="30" Name="AngleFreqIMinValueBox">0</TextBox>
+            <Slider Name="SliderAngleFreqI" Grid.Row="1" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AngleFreqIMinValueBox, Path=Text}" Maximum="{Binding ElementName=AngleFreqIMaxValueBox, Path=Text}"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Width="30" Name="AngleFreqIMaxValueBox">1000</TextBox>
             <Label Grid.Row="1" Grid.Column="3" Content="I"/>
-            <TextBox Grid.Row="2" Grid.Column="0" Width="30">0</TextBox>
-            <Slider Grid.Row="2" Grid.Column="1" Width="400"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Width="30">1000</TextBox>
+            <TextBox Grid.Row="2" Grid.Column="0" Width="30" Name="AngleFreqDMinValueBox">0</TextBox>
+            <Slider Name="SliderAngleFreqP" Grid.Row="2" Grid.Column="1" Width="400" Minimum="{Binding ElementName=AngleFreqDMinValueBox, Path=Text}" Maximum="{Binding ElementName=AngleFreqDMaxValueBox, Path=Text}"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Width="30" Name="AngleFreqDMaxValueBox">1000</TextBox>
             <Label Grid.Row="2" Grid.Column="3" Content="D"/>
         </Grid>
         <Button Margin="20" Name="SendButton" Click="SendButton_OnClick" IsEnabled="False" Width="100">Send Values</Button>
