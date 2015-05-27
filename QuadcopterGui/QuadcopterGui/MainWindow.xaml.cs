@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Net;
+using System.Threading;
 using System.Windows;
 
 namespace QuadcopterGui
@@ -13,6 +15,7 @@ namespace QuadcopterGui
 
     public MainWindow()
     {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
       InitializeComponent();
     }
 
@@ -46,7 +49,7 @@ namespace QuadcopterGui
 
       // build json string and round slider values to 2 of fractional digits
       string json = "{ \"Angle\" : { " +
-                    "\"P\": " + Math.Round(angleP, 2) + ", \"I\": " + Math.Round(angleI, 2) + ", \"D\": " + Math.Round(angleD, 2) + ", } " +
+                    "\"P\": " + Math.Round(angleP,2) + ", \"I\": " + Math.Round(angleI, 2) + ", \"D\": " + Math.Round(angleD, 2) + ", } " +
                     "\"AngleFreq\" : { " +
                     "\"P\": " + Math.Round(angleFreqP, 2) + ", \"I\": " + Math.Round(angleFreqI, 2) + ", \"D\": " + Math.Round(angleFreqD, 2) + ", } " +
                     "}";

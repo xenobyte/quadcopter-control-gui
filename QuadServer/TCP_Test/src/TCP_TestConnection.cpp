@@ -13,18 +13,20 @@
 #include <cstdlib>
 #include <string.h>
 #include "ParameterUpdateThread.h"
+#include "ThreadBase.h"
+#include "MatlabInterfaceTCP.h"
 
 using namespace std;
 
 Logging LOG("TCP_TestConnection.log");
 ServerSocket SERVER; // only tcp server
 
-void PrintBuffer(unsigned char* buf, uint32_t len){
-	for (uint i = 0; i < len; i++) {
-			cout << buf[i];
-		}
-		cout << endl;
-}
+//void PrintBuffer(unsigned char* buf, uint32_t len){
+//	for (uint i = 0; i < len; i++) {
+//			cout << buf[i];
+//		}
+//		cout << endl;
+//}
 
 int main(int argc, char* argv[]) {
 //	cout << "listening ..." << endl;
@@ -63,8 +65,10 @@ int main(int argc, char* argv[]) {
 	ParameterUpdateThread param_thread(port);
 	param_thread.Start();
 
+//	MatlabInterfaceBase *pMatlab = &MatlabInterfaceTCP::GetInstance();
+//	pMatlab->Start();
 
-
+	while(true){}
 
 
 

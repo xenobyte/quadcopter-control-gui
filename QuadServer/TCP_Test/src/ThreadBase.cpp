@@ -16,10 +16,11 @@ void * ThreadBase::ThreadFunc(void *param)
     assert(param != 0);
 
     ThreadBase *pObj = static_cast<ThreadBase*>(param);
+
     T_LOG->info("Thread starting " + std::to_string(pthread_self()));
     // Base priority change later
 
-    pObj->SetPriority(5);
+    pObj->SetPriority(5); //TODO make it setable?
     pObj->Run();
     T_LOG->info("Thread finished " + std::to_string(pthread_self()));
     pObj->CleanUp();
@@ -50,24 +51,27 @@ bool ThreadBase::Start(void)
 {
     if (mThreadHdl)
         return false;
-
     mThreadHdl = new pthread_t;
-
+    if (mThreadHdl == 0){
+    	std::cout << "mThreadHdl == 0" << std::endl;
+    }
     int ret = pthread_create(mThreadHdl,
                              NULL,
                              ThreadBase::ThreadFunc,
                              static_cast<void*>(this));
 
     if (ret) {
-        T_LOG->error("can't create thread");
+    	T_LOG->error("can't create thread");
         delete mThreadHdl;
         mThreadHdl = NULL;
         return false;
     }
     else {
-        THREADS.push_back(this);
+        std::cout << "Thread push back" << std::endl;
+    	THREADS.push_back(this);
         return true;
     }
+    return true;
 }
 
 void ThreadBase::Stop(void)

@@ -7,6 +7,7 @@
 
 #include "MatlabInterfaceBase.h"
 #include <unistd.h>
+#include <iostream>
 
 bool MatlabInterfaceBase::IsConnected() const
 {
@@ -22,6 +23,7 @@ MatlabInterfaceBase::MatlabInterfaceBase(int intervalMs) : mIsConnected(false), 
 
 void MatlabInterfaceBase::Run()
 {
+	std::cout << "run..." << std::endl;
 	// returns false if there was an error
 	while (WaitForConnection())
 	{

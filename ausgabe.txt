@@ -1,0 +1,20 @@
+
+[ThreadBase][II] Thread starting 1088750688
+Waiting for Parameter Client
+Client accepted
+Angle.P: 265.3
+Angle.I: 308.48
+Angle.D: 329.05
+Angle.N: no token of this name found
+AngleFreq.P: 351.67
+AngleFreq.I: 236.5
+AngleFreq.D: 345.5
+AngleFreq.N: no token of this name found
+Angle.P: 637.53
+Angle.I: 308.48
+Angle.D: 329.05
+Angle.N: no token of this name found
+AngleFreq.P: 351.67
+AngleFreq.I: 557.33
+AngleFreq.D: 540.87
+AngleFreq.N: no token of this name found

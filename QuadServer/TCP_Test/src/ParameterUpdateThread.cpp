@@ -7,11 +7,11 @@
 
 using namespace std;
 
-ParameterUpdateThread::ParameterUpdateThread(int port) :
-		mLogger(LOG.createLogger("ParameterUpdate")) {
+ParameterUpdateThread::ParameterUpdateThread(int port) : ThreadBase(), mPort(port),
+		mLogger(LOG.createLogger("ParameterUpdate"))
+{
 	mServer.set_blocking(true);
-	mPort = port;
-	mServer.bind(mPort);
+	mServer.bind(port);
 	mServer.listen(1);
 }
 
@@ -41,12 +41,13 @@ double ParameterUpdateThread::GetDoubleToken(json_token* tokens, string name) {
 void ParameterUpdateThread::Run(void) {
 	Parameters & params = Parameters::getInstance();
 	while (1) {
+		cout << "Waiting for Parameter Client" << endl;
 		UnqClientSocket client { mServer.accept() };
 		if (client == NULL) {
 			mLogger->error("Could not accept client");
 			continue;
 		}
-		mLogger->info("Connection accepted for ParameterUpdateThread");
+		cout << "Client accepted" << endl;
 
 		uint32_t bufferSize = 200;
 		unsigned char readBuffer[bufferSize];

@@ -76,6 +76,7 @@ namespace QuadcopterGui
         if (_streamWriter != null)
         {
           _streamWriter.Write(data);
+          _streamWriter.Flush();
         }
       }
     }

@@ -4,6 +4,7 @@
 
 #include <pthread.h>
 #include <vector>
+#include <iostream>
 
 class ThreadBase
 {
@@ -20,6 +21,7 @@ public:
     bool IsRunning(void);
     virtual void CleanUp(void) = 0;
     virtual void Run(void) = 0;
+
 
 protected:
     // Tors
