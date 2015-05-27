@@ -16,6 +16,9 @@ namespace QuadcopterGui
       InitializeComponent();
     }
 
+    /// <summary>
+    /// This is method is called if the connect button is pressed
+    /// </summary>
     private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
     {
       IPAddress ip = IPAddress.Parse(IpTextBox.Text);
@@ -27,6 +30,9 @@ namespace QuadcopterGui
       }
     }
 
+    /// <summary>
+    ///  This method is called if the send button is pressed
+    /// </summary>
     private void SendButton_OnClick(object sender, RoutedEventArgs e)
     {
       // get values from sliders
