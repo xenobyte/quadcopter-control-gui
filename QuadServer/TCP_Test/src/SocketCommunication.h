@@ -1,6 +1,6 @@
 
 /**
- * @author Alexander Preisinger
+ * @author Johannes Selymes
  * @date   2013-11-14
  */
 
@@ -43,12 +43,10 @@ protected:
 class ClientSocket : public SocketBase
 {
 public:
-
     TReadStatus write(std::uint8_t const * const data, std::uint32_t len) const;
     TReadStatus read(std::uint8_t * const data, std::uint32_t len) const;
 
 private:
-
     ClientSocket(int fd);
     friend class ServerSocket;
 

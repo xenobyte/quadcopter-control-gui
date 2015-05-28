@@ -2,7 +2,7 @@
  * TCP_TestConnection.h
  *
  *  Created on: 17.05.2015
- *      Author: Johannes
+ *      Author: Johannes Selymes
  */
 
 #ifndef SRC_TCP_TESTCONNECTION_H_
@@ -17,6 +17,5 @@ enum TReadStatus {
     eFailed     =  0,
     eSuccess    =  1
 };
-
 
 #endif /* SRC_TCP_TESTCONNECTION_H_ */

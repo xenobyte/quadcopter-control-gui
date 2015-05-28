@@ -33,3 +33,7 @@ QuadcopterGui/QuadcopterGui/bin/*
 
 #Visual Studio Stuff
 *.sdf
+Abgabe/projekt/Doku/main.synctex.gz
+Abgabe/projekt/Doku/main.toc
+Abgabe/projekt/Doku/PaxHeader/main.aux
+Abgabe/projekt/Doku/PaxHeader/main.toc

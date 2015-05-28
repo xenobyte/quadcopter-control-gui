@@ -18,9 +18,9 @@ void * ThreadBase::ThreadFunc(void *param)
     ThreadBase *pObj = static_cast<ThreadBase*>(param);
 
     T_LOG->info("Thread starting " + std::to_string(pthread_self()));
-    // Base priority change later
 
-    pObj->SetPriority(5); //TODO make it setable?
+    // Base priority change later
+    pObj->SetPriority(5);
     pObj->Run();
     T_LOG->info("Thread finished " + std::to_string(pthread_self()));
     pObj->CleanUp();

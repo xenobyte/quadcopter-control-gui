@@ -1,4 +1,3 @@
-
 #ifndef THREADBASE_H_QWZX93J7
 #define THREADBASE_H_QWZX93J7
 
@@ -11,7 +10,6 @@ class ThreadBase
 public:
     ThreadBase ();
     virtual ~ThreadBase ();
-
     void SetPriority(int prio);
 
     bool Start(void);
@@ -24,12 +22,9 @@ public:
 
 
 protected:
-    // Tors
 
 private:
-
     static void * ThreadFunc(void *param);
-
     pthread_t *mThreadHdl;
 };
 

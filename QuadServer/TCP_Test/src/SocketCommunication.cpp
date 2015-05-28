@@ -1,6 +1,6 @@
 
 /**
- * @author Alexander Preisinger
+ * @author Johannes Selymes
  * @date   2013-11-14
  */
 
@@ -127,7 +127,6 @@ bool ServerSocket::listen(std::int32_t backlog) const
                         + std::to_string(backlog));
         return false;
     }
-
     return true;
 }
 
@@ -203,7 +202,6 @@ TReadStatus ClientSocket::write(std::uint8_t const * const data, std::uint32_t l
         return eFailed;
 
     errno = 0;
-
     const size_t send_const = PACKET_SIZE;
 
     size_t bytesSend = 0;
@@ -238,8 +236,9 @@ TReadStatus ClientSocket::write(std::uint8_t const * const data, std::uint32_t l
 
 TReadStatus ClientSocket::read(std::uint8_t * const data, std::uint32_t len) const
 {
-    if (!is_valid())
+    if (!is_valid()) {
         return eFailed;
+    }
 
     errno = 0;
 
@@ -249,29 +248,25 @@ TReadStatus ClientSocket::read(std::uint8_t * const data, std::uint32_t len) con
     int bytesRead = 0;
     int bytesToRead = len;
     int err;
-    //while (bytesToRead > 0) {
-        err = recv(mSockfd, &data[bytesRead],
-                   (bytesToRead > read_const ? bytesToRead : read_const),
-                   MSG_NOSIGNAL);
-        //std::cout << "err: " << err << std::endl;
-        //std::cout << data[bytesRead] << std::endl;
-        //std::cout << "bytes to Read: " << bytesToRead << std::endl;
+    err = recv(mSockfd, &data[bytesRead],
+               (bytesToRead > read_const ? bytesToRead : read_const),
+               MSG_NOSIGNAL);
 
-        if (err == -1) {
-            if ((errno & EAGAIN) || (errno & (EWOULDBLOCK))) {
-                return eWouldBlock;
-            }
-            else {
-                SOCK_LOG->error(std::string("ClientSocket::read: ") +
-                                strerror(errno));
-                return eFailed;
-            }
+    if (err == -1) {
+        if ((errno & EAGAIN) || (errno & (EWOULDBLOCK))) {
+            return eWouldBlock;
         }
-        else if (err == 0) {
+        else {
+            SOCK_LOG->error(std::string("ClientSocket::read: ") +
+                            strerror(errno));
             return eFailed;
         }
-        bytesRead += err;
-        bytesToRead -= err;
-    //}
+    }
+    else if (err == 0) {
+        return eFailed;
+    }
+    bytesRead += err;
+    bytesToRead -= err;
+
     return eSuccess;
 }

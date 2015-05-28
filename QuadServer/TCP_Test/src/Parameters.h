@@ -20,7 +20,6 @@ struct PIDParam {
 	double KD;
 };
 
-// __attribute__((packed)) removed this to suppress compiler warning
 class Parameters {
 public:
 
@@ -118,47 +117,6 @@ private:
 	bool ParamsHaveChanged;
 	std::mutex mMutexParamsHaveChanged;
 };
-
-// Following code is for communication changes of specific parameters -- NOT NEEDED ANYMORE, now JSON is used
-//
-//enum TQuadcopterParameterType {
-//    // System Parameter
-//    eUMax,
-//    eDistancePropellor,
-//    eThrustConst,
-//    eAirResistance,
-//    eMotorMin,
-//    eMotorMax,
-//
-//    // Regel Parameter
-//    ePIDAngular,     // Triplet of Triplets
-//    ePIDAngularN,     // Filterkoeffizienten
-//    ePIDAngularRate, // Triplet of Triplets
-//    ePIDAngularRateN, // Triplet of Triplets
-//    eTauMax, // Triplet
-//
-//    // Steuerung
-//    eSetPointAngular, // Triplet
-//    eThrust,
-//    eThrustMin,
-//    eThrustMax,
-//    eThrustStep,
-//
-//    // Sensoren
-//    eGyroOffset,  // Triplet
-//    eAccOffset,   // Triplet
-//};
-//
-//struct __attribute__((packed)) TQuadcopterSendValue {
-//    TQuadcopterParameterType type;
-//    union {
-//        std::uint8_t u8;
-//        int i32;
-//        double d;
-//        DoubleTriplet dTriple;
-//        Triplet<PIDParam> PIDTriple;
-//    } value;
-//};
 
 #endif /* end of include guard: VALUES_H_PWZ5324D */
 
